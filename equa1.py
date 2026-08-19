@@ -10,9 +10,90 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Equação do 1o Grau",
-    page_icon="📈",
+    page_icon="💜",
     layout="centered"
 )
+
+
+# ============================================
+# TEMA BTS - ROXO
+# ============================================
+
+st.markdown("""
+<style>
+
+    .stApp {
+        background: linear-gradient(
+            135deg,
+            #12001f,
+            #24003d,
+            #3b0066
+        );
+        color: white;
+    }
+
+    h1 {
+        color: #d8b4fe !important;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    h2, h3 {
+        color: #c084fc !important;
+    }
+
+    p, label {
+        color: #f3e8ff !important;
+    }
+
+    div[data-baseweb="input"] {
+        background-color: #1f0b2e !important;
+        border: 1px solid #a855f7 !important;
+        border-radius: 10px;
+    }
+
+    input {
+        color: white !important;
+    }
+
+    .stButton > button {
+        background: linear-gradient(
+            90deg,
+            #7e22ce,
+            #a855f7
+        );
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .stButton > button:hover {
+        background: linear-gradient(
+            90deg,
+            #a855f7,
+            #c084fc
+        );
+        transform: scale(1.02);
+    }
+
+    div[data-testid="stAlert"] {
+        border-radius: 12px;
+    }
+
+    hr {
+        border-color: #9333ea;
+    }
+
+    .stCaption {
+        color: #c084fc !important;
+        text-align: center;
+    }
+
+</style>
+""", unsafe_allow_html=True)
+
 
 # ============================================
 # CAMINHO DA PASTA DO PROGRAMA
@@ -25,7 +106,7 @@ PASTA_APP = Path(__file__).parent
 # CAMINHO DA LOGOMARCA
 # ============================================
 
-CAMINHO_LOGO = PASTA_APP / "Maryangela.jpg"
+CAMINHO_LOGO = PASTA_APP / "mat.jpeg"
 
 
 # ============================================
@@ -33,6 +114,7 @@ CAMINHO_LOGO = PASTA_APP / "Maryangela.jpg"
 # ============================================
 
 if CAMINHO_LOGO.exists():
+
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
@@ -40,15 +122,18 @@ if CAMINHO_LOGO.exists():
             str(CAMINHO_LOGO),
             use_container_width=True
         )
+
 else:
-    st.warning("⚠️ A imagem mat.jpeg não foi encontrada.")
+    st.warning(
+        "⚠️ A imagem mat.jpeg não foi encontrada."
+    )
 
 
 # ============================================
 # TÍTULO
 # ============================================
 
-st.title("📈 Equação do 1o Grau")
+st.title("💜 Equação do 1o Grau")
 
 st.write("Equação no formato:")
 
@@ -76,7 +161,10 @@ b = st.number_input(
 # BOTÃO CALCULAR
 # ============================================
 
-if st.button("Calcular", use_container_width=True):
+if st.button(
+    "💜 Calcular",
+    use_container_width=True
+):
 
     # ========================================
     # VERIFICA O VALOR DE A
@@ -85,11 +173,13 @@ if st.button("Calcular", use_container_width=True):
     if a == 0:
 
         if b == 0:
+
             st.warning(
                 "A equação possui infinitas soluções."
             )
 
         else:
+
             st.error(
                 "A equação não possui solução."
             )
@@ -107,7 +197,7 @@ if st.button("Calcular", use_container_width=True):
         # RESULTADO
         # ====================================
 
-        st.subheader("✅ Resultado")
+        st.subheader("💜 Resultado")
 
         st.write(
             "A raiz da equação é:"
@@ -125,10 +215,13 @@ if st.button("Calcular", use_container_width=True):
         st.subheader("Equação")
 
         if b >= 0:
+
             st.latex(
                 f"{a}x + {b} = 0"
             )
+
         else:
+
             st.latex(
                 f"{a}x - {abs(b)} = 0"
             )
@@ -141,10 +234,13 @@ if st.button("Calcular", use_container_width=True):
         st.subheader("Resolução")
 
         if b >= 0:
+
             st.latex(
                 f"{a}x + {b} = 0"
             )
+
         else:
+
             st.latex(
                 f"{a}x - {abs(b)} = 0"
             )
@@ -168,25 +264,27 @@ if st.button("Calcular", use_container_width=True):
 
         st.subheader("📊 Gráfico da função")
 
-        # Cria intervalo para o gráfico
-
         x = np.linspace(
             x_raiz - 10,
             x_raiz + 10,
             500
         )
 
-        # Função do primeiro grau
-
         y = a * x + b
 
-        # Cria gráfico
+
+        # ====================================
+        # CRIA GRÁFICO
+        # ====================================
 
         fig, ax = plt.subplots(
             figsize=(8, 5)
         )
 
-        # Desenha a reta
+
+        # ====================================
+        # DESENHA A RETA
+        # ====================================
 
         ax.plot(
             x,
@@ -195,21 +293,30 @@ if st.button("Calcular", use_container_width=True):
             label=f"y = {a}x + {b}"
         )
 
-        # Eixo X
+
+        # ====================================
+        # EIXO X
+        # ====================================
 
         ax.axhline(
             y=0,
             linewidth=1
         )
 
-        # Eixo Y
+
+        # ====================================
+        # EIXO Y
+        # ====================================
 
         ax.axvline(
             x=0,
             linewidth=1
         )
 
-        # Marca a raiz
+
+        # ====================================
+        # MARCA A RAIZ
+        # ====================================
 
         ax.scatter(
             [x_raiz],
@@ -253,5 +360,5 @@ if st.button("Calcular", use_container_width=True):
 st.divider()
 
 st.caption(
-    "📚 Calculadora de Equação do 1o Grau"
+    "💜 Calculadora de Equação do 1o Grau — BTS"
 )
